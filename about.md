@@ -1,6 +1,6 @@
 ---
 layout: page
-title: <center>" Time goes now. Did you forget? "</center>
+title: <center> Time goes now. Did you forget? </center>
 permalink: /about/
 ---
 
