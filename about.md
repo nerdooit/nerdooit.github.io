@@ -1,10 +1,10 @@
 ---
 layout: page
-title: " Time goes now. Did you forget? "
+title: <center>" Time goes now. Did you forget? "</center>
 permalink: /about/
 ---
 
-![nerd_pic](../images/nerdooit.png):{width="350" height="250" .center-image }
+![nerd_pic](../images/nerdooit.png){:width="350" height="250" .center-image }
 
 ## Talk is cheap. Show me the code.
  - 각종 삽질한 내용들을 정리하는 블로그 입니다. 개인 블로그 처럼 쓰지만 제가 삽질한 내용들을 여러 사람들에게 공유하고 합니다.
