@@ -77,5 +77,5 @@ asdnlas
 다시 시작해보자
 오늘 까지만..
 I don't have plan.
-adsjkasdbj
+adsjkasdbasdnjj
 nono... bb
