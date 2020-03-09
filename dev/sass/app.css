@@ -162,6 +162,12 @@ a {
   background: -moz-linear-gradient(0deg, #FFCE69, #FA709A);
   background: linear-gradient(100deg, #FFCE69, #FA709A); }
 
+.banner-theme-nerdooit {
+  background: -webkit-linear-gradient(0deg, #33CE69, #FA709A);
+  background: -o-linear-gradient(0deg, #33CE69, #FA709A);
+  background: -moz-linear-gradient(0deg, #33CE69, #FA709A);
+  background: linear-gradient(100deg, #33CE69, #FA709A); }
+
 .themeColor-default {
   background-color: #1494FB; }
 
