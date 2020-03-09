@@ -151,10 +151,10 @@ a {
     margin-top: 8px; }
 
 .banner-theme-default {
-  background: -webkit-linear-gradient(0deg, #3CD5FF, #007AFF);
-  background: -o-linear-gradient(0deg, #3CD5FF, #007AFF);
-  background: -moz-linear-gradient(0deg, #3CD5FF, #007AFF);
-  background: linear-gradient(100deg, #3CD5FF, #007AFF); }
+  background: -webkit-linear-gradient(0deg, #e66465, #9198e5);
+  background: -o-linear-gradient(0deg, #e66465, #9198e5);
+  background: -moz-linear-gradient(0deg, #e66465, #9198e5);
+  background: linear-gradient(100deg, #e66465, #9198e5); }
 
 .banner-theme-pink {
   background: -webkit-linear-gradient(0deg, #FFCE69, #FA709A);
@@ -868,7 +868,7 @@ a {
 
 @media screen and (min-width: 1920px) {
   .home-banner {
-    height: 600px; }
+    height: 500px; }
     .home-banner h2 {
       padding-top: 260px;
       font-size: 42px; }
