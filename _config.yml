@@ -29,8 +29,8 @@ nightMode: false
 
 # Comments
 comments:
-  disqus: false
-  disqus_url: 'https://liaokeyu.disqus.com/embed.js'
+  disqus: true
+  disqus_url: 'https://nerdooit.disqus.com/embed.js'
 
 # MathJax
 mathjax: true
