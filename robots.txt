@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: http://nerdooit.github.io/sitemap.xml
