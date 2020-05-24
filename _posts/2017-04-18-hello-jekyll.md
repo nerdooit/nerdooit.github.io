@@ -5,6 +5,9 @@ date: 2017-04-18
 author: Jekyll
 cover: /images/accelerated.png
 tags: jekyll
+sitemap :
+  changefreq : daily
+  priority : 1.0
 ---
 
 > Transform your plain text into static websites and blogs.
