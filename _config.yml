@@ -30,7 +30,8 @@ nightMode: false
 # Comments
 comments:
   disqus: true
-  disqus_url: 'https://nerdooit.disqus.com/embed.js'
+  #disqus_url: 'https://nerdooit.disqus.com/embed.js'
+  disqus_shortname : nerdooit-githu-io
 
 # MathJax
 mathjax: true
