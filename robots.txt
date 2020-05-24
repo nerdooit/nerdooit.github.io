@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://nerdooit.github.io/sitemap.xml
+Sitemap: http://nerdooit.github.io/sitemap.xml
