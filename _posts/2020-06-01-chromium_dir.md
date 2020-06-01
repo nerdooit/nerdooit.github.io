@@ -3,7 +3,7 @@ layout: post
 title: 'Chromium 소스코드 디렉토리 정리'
 date: 2020-06-01
 author: nerdooit
-cover: /img/chromium_nerdooit.png
+cover: '/img/chromium_nerdooit.png'
 tags: chromium
 lastmod : '2020-06-01 21:30:00'
 sitemap :
@@ -87,7 +87,7 @@ Chromium 소스를 다운 받아 확인해보면 다양한 디렉토리들이 �
 opensource로 제공한다.
 
 #### Chromium Directory 도식화
-![chromium_dir](img/chromium_dir.png)
+![chromium_dir]("img/chromium_dir.png")
 
 - 위의 그림은 전체적인 도식화 그림을 나타낸 것이다. 다만, 위의 그림이 정확하게 지금의 chromium source code와 일치하다고 이야기 할 수 없다. 자료가 꽤 오래전에 작성된 점을 감안하고 확인해야한다. 앞으로 chromium 소스코드를 분석하고 정리하면서, 이 부분에 대한 update를 주기적으로 할 것이다. 
 
