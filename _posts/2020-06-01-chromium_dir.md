@@ -1,12 +1,12 @@
 ---
 layout: post
-title: 'Chromium 소스코드 디렉토리 정리'
+title: '[Chromium] Chromium 소스코드 디렉토리 정리'
 subtitle: 'Chromium의 소스코드 디렉토리에 대해 알아보자'
 date: 2020-06-01
 author: nerdooit
 cover: '/img/chromium_nerdooit.png'
-tags: chromium
-lastmod : '2020-06-01 21:30:00'
+tags: chromium c++ 'web browser engine'
+lastmod : '2020-06v-v01 21:30:00'
 sitemap :
 changefreq : daily
 priority : 1.0
