@@ -1,6 +1,7 @@
 ---
 layout: post
 title: 'Chromium 소스코드 디렉토리 정리'
+subtitle: 'Chromium의 소스코드 디렉토리에 대해 알아보자'
 date: 2020-06-01
 author: nerdooit
 cover: '/img/chromium_nerdooit.png'
@@ -10,8 +11,6 @@ sitemap :
 changefreq : daily
 priority : 1.0
 ---
-
-> Chromium의 소스코드 디렉토리에 대해 알아보자
 
 ### Chromium source code directory 전반적인 부분
 #### Chromium 핵심 2가지 부분
