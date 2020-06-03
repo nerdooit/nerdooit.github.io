@@ -6,7 +6,7 @@ date: 2020-06-01
 author: nerdooit
 cover: '/img/chromium_nerdooit.png'
 tags: chromium c++ 'web browser engine'
-lastmod : '2020-06v-v01 21:30:00'
+lastmod : '2020-06-01 21:30:00'
 sitemap :
 changefreq : daily
 priority : 1.0
