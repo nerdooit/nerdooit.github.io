@@ -5,7 +5,7 @@ subtitle: 'Chromium의 소스코드 디렉토리에 대해 알아보자'
 date: 2020-06-01
 author: nerdooit
 cover: '/img/chromium_nerdooit.png'
-tags: chromium c++ 'web browser engine'
+tags: chromium  "web browser engine"
 lastmod : '2020-06-01 21:30:00'
 sitemap :
 changefreq : daily
