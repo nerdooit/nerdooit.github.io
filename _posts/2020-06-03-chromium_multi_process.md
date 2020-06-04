@@ -36,7 +36,7 @@ Bug가 존재하지 않고 crash가 생기지 않는 rendering engine을 만드�
   - Blink open source layout engine을 사용한다.
   - HTML, CSS, layout, compositing 등을 담당한다.
 
-![multiprocess](../img/chromiumMultiProc.png)
+![multiprocess](/img/chromiumMultiProc.png)
 
 ### Renderer 관리
 - 각 Render process ***전역(Global) Render process***를 포함
