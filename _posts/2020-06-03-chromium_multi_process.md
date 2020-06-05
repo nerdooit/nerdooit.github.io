@@ -5,7 +5,7 @@ subtitle: 'Chromium의 핵심 아키텍쳐에 대해 알아보자'
 date: 2020-06-03
 author: nerdooit
 cover: '/img/chromium_nerdooit.png'
-tags: chromium c++ 'web browser engine'
+tags: chromium chromium_document
 lastmod : '2020-06-03 23:30:00'
 ---
 
