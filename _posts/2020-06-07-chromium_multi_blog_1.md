@@ -85,7 +85,7 @@ non-client 영역을 담당한다. (non-client 내용은 우리가
 non client 부분은 나중에 추가 토픽으로 추출해 다루도록 한다. 우선 대략적으로
 이런 것들을 말하는구나만 알고 넘어가자
 
-![non-client view](/img/non-cilent.png)
+![non-client view](/img/non-client.png)
 
 #### I/O thread 연관된 객체들
 ##### Channel
