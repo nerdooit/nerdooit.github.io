@@ -1,6 +1,6 @@
 ---
 layout: post
-title: '[Chromium] Google chome 뒤에선 어떤 동작이 일어나는가?'
+title: '[Chromium] Google chome 뒤에선 어떤 동작이 일어나는가? (i)'
 subtitle: 'Explore the Magic Behind Google Chrome'
 date: 2020-06-07
 author: nerdooit
