@@ -1,3 +1,14 @@
+---
+layout: post
+title: '[Design Pattern] 객체를 생성하는 방법'
+subtitle: 'C++ 에서 객체를 생성하는 방법을 알아보자'
+date: 2020-06-07
+author: nerdooit
+cover: 'img/design_pattern_cover.png'
+tags: C++ DesignPattern
+lastmod : '2020-06-07 14:24:00'
+---
+
 ### 객체를 만드는 방법
  우리가 흔히 사용하는 객체를 만드는 방법에는 크게 4가지가 존재한다.
 - Stack / Heap 영역에 할당받아 생성 (자유로운 방법)
