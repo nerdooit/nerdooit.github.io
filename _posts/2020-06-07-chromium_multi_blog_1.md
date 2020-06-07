@@ -1,4 +1,13 @@
-
+---
+layout: post
+title: '[Chromium] Google chome 뒤에선 어떤 동작이 일어나는가?'
+subtitle: 'Explore the Magic Behind Google Chrome'
+date: 2020-06-07
+author: nerdooit
+cover: '/img/chromium_nerdooit.png'
+tags: chromium 크로미움관련블로그
+lastmod : '2020-06-07 13:10:00'
+---
 
 ### Explore the Magic Behind Google Chrome
 위의 내용이 잘 정리된 블로그가 있어 개인적으로 옮기고자 한다. 조금 옛날 지식이
