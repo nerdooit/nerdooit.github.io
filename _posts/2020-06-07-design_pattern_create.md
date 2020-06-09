@@ -7,6 +7,9 @@ author: nerdooit
 cover: 'img/design_pattern_cover.png'
 tags: C++ DesignPattern
 lastmod : '2020-06-07 14:24:00'
+sitemap :
+  changefreq : daily
+  priority : 1.0
 ---
 
 ### 객체를 만드는 방법

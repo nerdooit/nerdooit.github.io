@@ -8,8 +8,8 @@ cover: '/img/chromium_nerdooit.png'
 tags: chromium  chromium_document
 lastmod : '2020-06-01 21:30:00'
 sitemap :
-changefreq : daily
-priority : 1.0
+  changefreq : daily
+  priority : 1.0
 ---
 
 ### Chromium source code directory 전반적인 부분

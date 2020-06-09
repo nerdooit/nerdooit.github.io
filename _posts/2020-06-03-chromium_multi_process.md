@@ -7,6 +7,9 @@ author: nerdooit
 cover: '/img/chromium_nerdooit.png'
 tags: chromium chromium_document
 lastmod : '2020-06-03 23:30:00'
+sitemap :
+  changefreq : daily
+  priority : 1.0
 ---
 
 ## Multi-process Architecture

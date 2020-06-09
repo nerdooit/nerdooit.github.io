@@ -7,6 +7,9 @@ author: nerdooit
 cover: '/img/chromium_nerdooit.png'
 tags: chromium 크로미움관련블로그
 lastmod : '2020-06-07 13:10:00'
+sitemap :
+  changefreq : daily
+  priority : 1.0
 ---
 
 ### Explore the Magic Behind Google Chrome
