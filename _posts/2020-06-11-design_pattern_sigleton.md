@@ -1,3 +1,16 @@
+---
+layout: post
+title: '[Design Pattern] Singleton pattern'
+subtitle: 'C++로 Singleton을 디자인 하는 방법을 알아보자'
+date: 2020-06-11
+author: nerdooit
+cover: 'img/design_pattern_cover.png'
+tags: C++ DesignPattern
+lastmod : '2020-06-11 14:24:00'
+sitemap :
+  changefreq : daily
+  priority : 1.0
+---
 ### Singleton pattern
 클래스를 디자인 할 경우 인스턴스는 오직 하나임을 보장하여 접근 어디에서든
 하나로만 통합되어져 있는 디자인 기법을 말한다. 즉, 쉽게 생각해보면, 오직 하나의
