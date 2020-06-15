@@ -10,12 +10,14 @@
 - Muted 속성 변화 방법
 - Text decoration skip ink 옵션
 - Google chome 뒤에선 어떤 동작이 일어나는가? (ii)
+- Audio / Video playback
 
 #### Baekjoon
 - 10171번 고양이
 - 9012번 괄호
 - 4949번 균형잡힌세상
 - 1008번 A/B
+- 1874번 스택수열
 
 #### Design pattern
 - 객체를 생성하는 방법
@@ -25,3 +27,7 @@
 - 최고의 변화는 어디서 시작되는가
 - 행복한 프로그래밍
 - 시간 전쟁
+
+### C++ Reference
+- Setprecision()
+- Getline()
