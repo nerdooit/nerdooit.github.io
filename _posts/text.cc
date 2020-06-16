@@ -11,11 +11,12 @@ void perm (int idx, int cnt)
 			cout << arr[i] << " ";
 		}
 		cout << endl;
+		return;
 	}
 
 	for (int j = 0 ; j < cnt; j++) {
-		arr[idx] = j + 1;
-		perm(idx + 1, cnt);
+			arr[idx] = j + 1;
+			perm(idx + 1, cnt);
 	}
 }
 
