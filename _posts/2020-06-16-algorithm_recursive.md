@@ -1,7 +1,7 @@
 ---
 layout: post
 title: '[Algorithm] Recursive Call'
-subtitle: '재귀함수에 대해 알아보보자'
+subtitle: '재귀함수에 대해 알아보자'
 date: 2020-06-16
 author: nerdooit
 cover: 'img/cpp_algorithm_cover.png'
