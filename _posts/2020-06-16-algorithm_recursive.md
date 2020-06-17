@@ -236,3 +236,47 @@ stack overflow가 발생하지 않는다는 것을 한번더 상기시키자. �
 
 #### 중복된 수가 없는 순열
 
+```java
+#include <iostream>
+#define MAX 10
+using namespace std;
+
+int arr[MAX];
+bool visited[MAX];
+void perm (int idx, int cnt)
+{
+  if (idx == cnt) {
+    for (int i = 0; i < cnt; i++) {
+      cout << arr[i] << " ";
+    }
+    cout << endl;
+    return;
+  }
+
+  for (int j = 0 ; j < cnt; j++) {
+      if (!visited[j]) {
+      arr[idx] = j + 1;
+      visited[j] = true;
+      perm(idx + 1, cnt);
+      visited[j] = false;
+    }
+  }
+}
+
+int main() {
+  perm(0, 3);
+}
+```
+
+위의 코드는 중복 없이 순열을 출력하는 코드이다. 해당코드에서 핵심은 ***visited
+배열*** 이다. visited 배열을 통해 방문유무를 체크해야한다. for문을 돌면서 첫
+번째 공간은 방문했다 체크를하고 recursive 함수를 호출해야한다. 이 부분은 BOJ
+문제를 통해 좀 더 자세하게 설명하도록 한다.
+
+---
+#### Reference
+- [양햄찌 블로그](https://jhnyang.tistory.com/107)
+- [초보몽키 블로그](https://wayhome25.github.io/cs/2017/04/15/cs-16-1-recursion/)
+- [sjk 블로그](https://medium.com/sjk5766/%EC%9E%AC%EA%B7%80%ED%95%A8%EC%88%98%EB%A5%BC-%EC%93%B0%EB%8A%94-%EC%9D%B4%EC%9C%A0-ed7c37d01ee0)
+- [코딩 도장](https://dojang.io/mod/page/view.php?id=584)
+- [펜네 블로그](https://blog.naver.com/jjanggu327/220758103921)

@@ -46,7 +46,7 @@ function settingSkipInk() {
 ```
 
 #### Reference
-[크롬적용 history](https://www.chromestatus.com/feature/5631679087509504)
-[Web document](https://developer.mozilla.org/en-US/docs/Web/CSS/text-decoration-skip-ink)
-[necols issue tracking](https://github.com/necolas/normalize.css/issues/722)
+- [크롬적용 history](https://www.chromestatus.com/feature/5631679087509504)
+- [Web document](https://developer.mozilla.org/en-US/docs/Web/CSS/text-decoration-skip-ink)
+- [necols issue tracking](https://github.com/necolas/normalize.css/issues/722)
 
