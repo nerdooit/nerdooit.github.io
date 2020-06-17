@@ -359,7 +359,7 @@ int main()
 고정되기 때문에 객체 타입을 받을 수 있는 ***Template***을 통해 구현해야한다.
 이렇게 template을 이용해 파생클래스의 이름을 알 수 있는 방법을 ***CRTP (Curiously Recurring Template pattern)*** 이라고 부른다.
 
-위의 패턴 같은 경우 안드로이드 프레임워크에서 사용하는 코드와 비슷한대, [여기]()를 클릭해서 확인해보자.
+위의 패턴 같은 경우 안드로이드 프레임워크에서 사용하는 코드와 비슷한대, [여기](https://nerdooit.github.io/2020/06/17/osc_android_1.html)를 클릭해서 확인해보자.
 
 Singleton pattern은 많이 사용하니 자세하게 알아두는 것이 좋다. 모르겠으면,
 					처음부터 다시 한번 찬찬히 읽어보기 바란다.
