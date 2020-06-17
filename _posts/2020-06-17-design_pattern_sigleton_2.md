@@ -331,7 +331,7 @@ using namespace std;
 template<typename TYPE> class Singleton
 {
   int x,y;
-protected: // 파생클래스의 객체가 만들어 지려면 기반 클래스의 객체는 proteceted에 있어야함.
+protected:
   Singleton() {}
   Singleton(const Singleton&) = delete;
   void operator=(const Singleton&) = delete;
@@ -353,6 +353,7 @@ int main()
   Mouse& c1 = Mouse::getInstance();
 }
 ```
+
 위의 코드는 상속을 통해 재사용하는 방법을 나타낸 것이다. Singletone을 상속받으면
 객체 타입을 전달하면 된다. 다만, 일반적인 클래스로 작성할 경우 객체타입이
 고정되기 때문에 객체 타입을 받을 수 있는 ***Template***을 통해 구현해야한다.
