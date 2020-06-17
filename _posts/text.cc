@@ -3,7 +3,7 @@
 using namespace std;
 
 int arr[MAX];
-
+bool visited[MAX];
 void perm (int idx, int cnt)
 {
 	if (idx == cnt) {
@@ -15,8 +15,12 @@ void perm (int idx, int cnt)
 	}
 
 	for (int j = 0 ; j < cnt; j++) {
+			if (!visited[j]) {
 			arr[idx] = j + 1;
+			visited[j] = true;
 			perm(idx + 1, cnt);
+			visited[j] = false;
+		}
 	}
 }
 
