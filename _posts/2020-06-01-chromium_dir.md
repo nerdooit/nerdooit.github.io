@@ -1,6 +1,6 @@
 ---
 layout: post
-title: '[Chromium] Chromium 소스코드 디렉토리 정리'
+title: '[Chromium] Getting Around the Chromium Source Code Directory Structure'
 subtitle: 'Chromium의 소스코드 디렉토리에 대해 알아보자'
 date: 2020-06-01
 author: nerdooit

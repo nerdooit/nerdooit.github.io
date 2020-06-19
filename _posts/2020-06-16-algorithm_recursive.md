@@ -5,7 +5,7 @@ subtitle: '재귀함수에 대해 알아보자'
 date: 2020-06-16
 author: nerdooit
 cover: 'img/cpp_algorithm_cover.png'
-tags: 알고리즘 boj
+tags: algorithm recursive
 lastmod : '2020-06-16 21:10:00'
 sitemap :
   changefreq : daily

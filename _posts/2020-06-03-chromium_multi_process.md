@@ -1,6 +1,6 @@
 ---
 layout: post
-title: '[Chromium] Chromium 멀티 프로세스 아키텍쳐'
+title: '[Chromium] Multi-process Architecture'
 subtitle: 'Chromium의 핵심 아키텍쳐에 대해 알아보자'
 date: 2020-06-03
 author: nerdooit

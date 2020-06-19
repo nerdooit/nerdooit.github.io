@@ -1,6 +1,6 @@
 ---
 layout: post
-title: '[Chromium] Audio / Video playback'
+title: '[Chromium] Audio / Video Playback'
 subtitle: 'Chromium의 Audio / Video 재생 동작을 알아보자'
 date: 2020-06-15
 author: nerdooit
