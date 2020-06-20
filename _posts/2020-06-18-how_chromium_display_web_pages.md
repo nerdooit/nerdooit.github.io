@@ -51,10 +51,113 @@ chromium으로 가져올 수 없다.
 현재는 blink로 구성되어 chromium에 최적화된 web engine을 사용한다. (history
 		파악정도만 하자)
 
+#### The WebKit glue
+Chromium 같은경우 Webkit과 다른 코딩스타일 (chromium은 tab 2칸, webkit은 4칸)을
+사용하며, code layout도 다르다. ***Webkit glue*** 같은 경우 Google의 코딩 규약과
+스타일을 webkit에 적용하기 편리하도록
 
+The WebKit glue
+The Chromium application uses different types, coding styles, and code layout than the third-party WebKit code. The WebKit "glue" provides a more convenient embedding API for WebKit using Google coding conventions and types (for example, we use std::string instead of WebCore::String and GURL instead of KURL). The glue code is located in /webkit/glue. The glue objects are typically named similar to the WebKit objects, but with "Web" at the beginning. For example, WebCore::Frame becomes WebFrame.
+The WebKit "glue" layer insulates the rest of the Chromium code base from WebCore data types to help minimize the impact of WebCore changes on the Chromium code base. As such, WebCore data types are never used directly by Chromium. APIs are added to the WebKit "glue" for the benefit of Chromium when it needs to poke at some WebCore object.
 
+The "test shell" application is a bare-bones web browser for testing our WebKit port and glue code. It uses the same glue interface for communicating with WebKit as Chromium does. It provides a simpler way for developers to test new code without having many complicated browser features, threads, and processes. This application is also used to run the automated WebKit tests. However, the downside of the "test shell" is that it doesn't exercise WebKit as Chromium does, in a multi-process way. The content module is embedded in an application called "content shell" which will soon be running the tests instead.
 
+### The render process
+Renderer 의 대한 이야기는 이전 포스팅에 많이 다루었던 것 같다. 현재 포스팅을
+작성하는 이유는 이전 보다 그림이 잘 나와있어서 추가하고자 한다. 이해가 잘 가지
+않는다면 [이전 포스팅](https://nerdooit.github.io/2020/06/03/chromium_multi_process.html)을 참고하도록 하자.
+
+![render process](/img/render_process_how.png)
+
+위의 그림과 같이 Renderer 구조이다. Renderer는 크게 웹엔진 부분인 webkit (blink ) 부분과 Render process 부분으로 나뉜다. Render process의 코드는 그렇게 많지않으며, 주된 역할은 IPC를 이용해 browser 내 존재하는 IO thread와 통신하는 역할을 한다. 렌더러를 담당하는 객체들을 구체적으로 보자.
+
+Renderer에서 중요한 객체는 3가지가 존재한다.
+- RenderView
+	- Renderer에서 가장 중요한 객체로 꼽을 수 있다. 이 객체같은 경우 하나의
+	웹페이지를 처리하는 역할을 한다. Browser process에서 필요한 명령어를
+	전달받거나 네비게이션 역할을 담당하며, 웹페이지를 구성하는 필수적 요소를
+	한다고 생각하면 된다. 소스코드의 위치는 /content/renderer/render_view_impl.cc
+	이며, header file로 가서 확인해보면 알겠지만, 많은 기능들이 render frame
+	impl로 옮겨갔다는 것을 알 수 있다. preference 설정하는 부분은 남아있었던 걸로
+	기억한다.
+
+- RenderWidget
+	- Widget 같은경우 따로 추출해 포스팅을 할 예정이다. 간단하게 이야기하자면,
+	input event handling 역할과 painting을 담당한다. 소스코드 위치는
+	content/renderer/render_widget.cc 이다.
+
+- RenderProcess
+	- Render process 같은 경우 위의 언급과 같이, global renderer process를 이용해
+	browser process와 통신하는 역할을 한다. 소스코드의 위치는
+	content/renderer/render_process.cc 이다.
+
+위의 내용을 보면 의문점이 생기는 것들이 몇 가지 존재할 수 있다. 그 중 가장
+의문점이 많이 생기는 부분은 ***RenderView와 RenderWidget의 차이는 무엇인가?***
+이다. 문서에도 언급되어있고, 개인적으로도 궁금했던 부분이다.
+
+RenderWidget은 내부적으로 Webcore::Widget을 가지고 있다. RenderWidget같은 경우
+기본적으로 screen에 나타나는 input event handling을 하고 window 창 관련된 painting 작업을 한다.
+RenderView 같은 경우 위의 그림과 같이, RenderWidget을 상속받고 있으며 탭 내의
+content를 구성하거나 window popup등을 처리한다. widget의 input과 painting
+처리요청을 widget에 전달하는 역할도 한다. 따라서, Widget 같은 경우 View에 의해
+관리 된다고 볼 수도 있는데, 관리 되지 않는 경우가 하나 존재한다. Web page 내
+존재하는 select box (아래 화살표 방향을 눌러 리스트를 보는 박스)는 widget
+독단적으로 처리한다. 이 부분은 View에 의해 구성되는 것이 아닌 native window를
+통해 구성되어지도록 되어져있다. (옛 문서라 지금은 다르게 구성될수도 있을 것
+		같다는 생각을 한다..)
+
+#### Threads in the renderer
+Renderer에는 main thread / render thread 두 가지 중요한 thread가 존재한다. 이
+부분은 [chromium 관련 블로그](https://nerdooit.github.io/2020/06/07/chromium_multi_blog_1.html)를 통해 자세하게 다뤘다. 복습차원으로 한번 보자. 우선, render thread는 rendering 동작 중 메인이라고 불릴 수 있는 곳인 RenderView, Webengine(webkit, blink)을 수행하는 역할을 한다. 그 외의 처리는 main thread가 담당하는데, 대표적으로 browser와 통신을 담당한다. Browser에게 메세지를 RenderProcess를 이용해 main thread가 전달받고 전달하는 역할을 한다. 일례로 Render process의 메세지를 browser process에 동기적으로 보내는 경우가 존재하는데, browser가 계속 결과를 요청하는 케이스가 존재한다. 따라서, browser process가 필요하다고 요청을 하게 되면 render process가 보내는 역할을 한다. 구체적인 사례는 cookie를 떠올리면 된다.
+
+- cookie의 전달과정
+- JS 에 의해 cookie가 요청됐을 경우, page에 대한 쿠키를 browser 에게 전달한다. 그 경우에
+render thread는 block되고 main thread는 관련된 모든 message들을 browser에게
+메세지가 올 때까지 queue에 넣고 대기한다. 이후 메세지를 전달받으면 block을
+풀고 정상적으로 render thread가 동작한다.
+
+### The browser process
+Browser process는 low / high level로 나누어 볼 수 있다. 결국에는 I/O thread와
+main thread로 나뉘는 것이며, 이 부분도 지난 포스팅을 통해 자세하게 다뤘다. 다만,
+		 소스코드 위주로 IPC에 대한 내용을 중점적으로 확인해보자.
+
+![browser process](/img/browser_process_how.png)
+
+#### Low-level browser process objects
+IPC를 이용한 Renderer와의 통신은 해당 부분에서 처리가 된다. 또한, 사용자에게
+보여주는 부분에 대한 방해를 제거하기 위해 network 처리도 담당한다.
+
+객체 단위로 어떻게 동작하는지 확인해보자.
+browser내 main thread가 RenderProcessHost를 처음 초기할 때, render process와
+channel proxy가 named pipe로 함께 구성되어진다. 해당 객체들은 I/O thread에
+의해 동작되고 renderprocess에 의해 데이터를 전달받거나 해당 데이터를
+RenderProcessHost로 전달하는 역할을 한다. RenderProcessHost는 main(UI) thread에서
+동작하고 있다. 그림에서 보이는 것과 같이, message filter가 channel내 생성되게
+되는데 I/O thread가 처리할 수 있는 부분, 예를들면 network request 등과 같은
+처리를 담당하게 된다. network resource에게 전달하는 역할을 한다고 보면 된다.
+해당 filtering 동작은 ResourceMessageFilter::OnMessageReceived 함수에서
+발생한다.
+
+Main(UI) thread에서 동작하는 RenderProcessHost는 view-specific한 메세지들을
+적절하게 RenderViewHost로 전달하는 역할을 한다. 이 전달하는 동작들은
+RenderProcessHost::OnMessageReceived 함수에서 발생한다.
+
+#### High-level browser process objects
+앞서 본 것과 같이 대부분의 view-specific한 메세지들은 RenderViewHost로 전달된다.
+대부분은 여기서 처리되는데, 처리되지못해 남겨진 것들은 RenderWidget에서
+처리된다. 각 플랫폼 별 자신의 view class를 처리하기 위해 native view system을
+구축한다. 즉, chromium 과 호환적으로 동작하기 위해 platform에서는 개별적인
+renderviewhost를 구축한다. 이 부분은 통합된 것으로 알고 있다. 확인되면
+갱신하도록 하겠다.
+
+RenderView / Widget 위에는 WebContents 객체가 있으며 대부분의 메시지는 실제로 해당 객체에 대한 함수 호출로 종료된다. WebContent는 탭 내 웹페이지를 나타낸다. content module에서 최상위 레벨 오브젝트이며, 직사각형보기에서 web 페이지를 표시한다.
+
+---
+
+#### Memorization
+- appropriate - 적절한
+- Among other things - 그중에서
 
 #### Reference
-[chromium architecture](https://www.chromium.org/developers/design-documents/multi-process-architecture)
+[chromium document](https://www.chromium.org/developers/design-documents/displaying-a-web-page-in-chrome)
 
