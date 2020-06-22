@@ -115,3 +115,41 @@ ios_base::sync_with_stdio(false);
 사용하지 못한다.*** 이 부분을 꼭 기억해야한다.
 
 ### cin.tie()
+cin 과 cout은 tie() 즉, 묶여있다. tie() 동작은 std::cin 통해 입력을 받기전에 std::cout을 flushing 하도록 한다. tie() 동작은 상호작용을 요하는 console 프로그램에서 유용하지만, large I/O 동작을 할 때 속력이 느려지는 단점이 있다. 만약 아래의 코드와 같이, Null을 인자로 전달하게 된다면, utie 동작을 수행할 수 있다.
+
+```java
+cin.tie(NULL);
+```
+
+위의 코드를 사용하면, 단점인, 다수의 데이터가 들어올 경우 속도가 빨라질 수 있다.
+백준 문제를 생각해보면, 지속적으로 출력을 하는 것이 아닌 결과를 모아서 한번에
+출력하면 되도록 되어져있다. 따라서, tie() 동작을 굳이 할필요가 없으며, tie()
+	동작을 제거하고 flushing을 제거하게 된다면 속도가 빨라질 수 있다.
+
+아래의 예시를 보자.
+
+```java
+#include <iostream>
+int main()
+{
+	std::cout << "Enter name:";
+	std::cin >> name;
+}
+```
+output 
+
+```java
+#include <iostream>
+int main()
+{
+	ios_base::sync_with_stdio(false);
+	cin.tie(NULL);
+	std::cout << "Enter name:";
+	std::cin >> name;
+}
+```
+
+---
+#### Reference
+- [뽕뽑기 블로그](https://codecollector.tistory.com/381)
+- [GeeksforGeeks](https://www.geeksforgeeks.org/fast-io-for-competitive-programming/)

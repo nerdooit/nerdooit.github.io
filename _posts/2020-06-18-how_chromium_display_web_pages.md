@@ -54,13 +54,30 @@ chromium으로 가져올 수 없다.
 #### The WebKit glue
 Chromium 같은경우 Webkit과 다른 코딩스타일 (chromium은 tab 2칸, webkit은 4칸)을
 사용하며, code layout도 다르다. ***Webkit glue*** 같은 경우 Google의 코딩 규약과
-스타일을 webkit에 적용하기 편리하도록
+스타일을 webkit에 적용해 Chromium 내부에서 Web engine 사용을 편리하도록 한다.
+예를들면, webkit내 존재하는 WebCore::String 을 std::string으로 바꿔 주는 경우나
+KURL 대신 GURL로 변경해준다. glue code는 /webkit/glue에 존재한다. (현재는
+		존재하는 것으로 보이지는 않으며, blink화 되면서 왠만한 코드들이 다시 작성된 느낌이다.) glue 객체 같은 경우 webkit의 이름을 완전히 바꾸지 않고 최대한 비슷하게 유지하도록 한다. (가령, WebCore::Frame 같은 경우 WebFrame으로 변경)
 
-The WebKit glue
-The Chromium application uses different types, coding styles, and code layout than the third-party WebKit code. The WebKit "glue" provides a more convenient embedding API for WebKit using Google coding conventions and types (for example, we use std::string instead of WebCore::String and GURL instead of KURL). The glue code is located in /webkit/glue. The glue objects are typically named similar to the WebKit objects, but with "Web" at the beginning. For example, WebCore::Frame becomes WebFrame.
-The WebKit "glue" layer insulates the rest of the Chromium code base from WebCore data types to help minimize the impact of WebCore changes on the Chromium code base. As such, WebCore data types are never used directly by Chromium. APIs are added to the WebKit "glue" for the benefit of Chromium when it needs to poke at some WebCore object.
+Glue의 가장 큰역할은 편리성도 있지만, 호환성 문제를 최소화하는데있다. Webkit
+내부과 chromium을 연결하는 역할을 하며, Webkit의 소스코드를 변경함으로
+chromium에 영향을 미치지 않는 것을 목표화한다. WebCore의 데이터 타입들은
+Chromium에서 사용되지 않는다. Webkit에 데이터나 함수가 추가 되더라도 glue만
+변경하거나 추가하면 되고 chromium 소스코드를 직접 변경하지 않는다.
 
-The "test shell" application is a bare-bones web browser for testing our WebKit port and glue code. It uses the same glue interface for communicating with WebKit as Chromium does. It provides a simpler way for developers to test new code without having many complicated browser features, threads, and processes. This application is also used to run the automated WebKit tests. However, the downside of the "test shell" is that it doesn't exercise WebKit as Chromium does, in a multi-process way. The content module is embedded in an application called "content shell" which will soon be running the tests instead.
+코드를 보면 "test shell" 이라는 application이 존재한다. 이 app 같은 경우 Webkit
+port 와 glue 동작을 테스팅 하기 위해 사용된다. Test shell 같은 경우 chromium과
+webkit이 glue를 사용하는 부분을 정확히 모사한다. Test shell은 단순하게
+동작하도록 되어져 있으며, 개발자가 새로운 기능을 추가할 경우 쉽게 확인해볼 수
+있다. browser 설정, thread, process 같은 복잡한 설정을 따로 할 필요가 없다.
+
+Glue 같은 경우 말 그대로 "접착제" 역할을 한다. 호환성을 유지하기 위해서,
+		 webkit과 chromium 중간에 붙어있다. 다만, blink로 바뀌면서 이런 부분들이
+		 많이 필요하진 않는 것으로 보인다. blink 내부에서 사용하는 rendering이나
+		 이런 부분들에서는 호환이 필요하지만, 더 높은 상위 계층에서는 필요하지
+		 않아보이며, 실제 코드에서도 glue영역은 식별되지 않고 있다. 이전에는
+		 이런것들이 있었으며, webframe과 같이 web이라는 prefix가 보이면 webkit에서
+		 가져온 것이구나 정도만 생각하도록하자. 
 
 ### The render process
 Renderer 의 대한 이야기는 이전 포스팅에 많이 다루었던 것 같다. 현재 포스팅을
@@ -157,6 +174,7 @@ RenderView / Widget 위에는 WebContents 객체가 있으며 대부분의 메�
 #### Memorization
 - appropriate - 적절한
 - Among other things - 그중에서
+- downside - 단점
 
 #### Reference
 [chromium document](https://www.chromium.org/developers/design-documents/displaying-a-web-page-in-chrome)
