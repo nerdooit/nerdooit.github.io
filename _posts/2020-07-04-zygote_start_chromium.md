@@ -37,7 +37,7 @@ process를 생성한다. Browser process와 Child process인 render process는 �
 #### Android zygote 사용
 안드로이드 관련한 Zygote 같은 경우 [dev-ahn blog](https://dev-ahn.tistory.com/category/Programing/Android?page=2) 를 통해 확인해보자. 아주 상세히 설명이 잘되어있다.
 
-![zygote_start](https://www.dropbox.com/s/6kevo877pt8dtba/zygote_start.png?dl=1)
+![zygote_start](/img/zygote_start.png)
 
 위의 그림은 zygote가 어플리케이션을 어떻게 실행하는지 확인할 수 있는 그림이다. zygote는 시스템 리소스 혹은 preload 되어야 하는 정보 및 메모리
  참조 주소 등을 다 갖고 있는 일종의 패키지를  그대로 복사한다. 이후 어플리케이션에 필요한 정보를 담아 수행하도록 한다.
@@ -52,7 +52,7 @@ process를 생성한다. Browser process와 Child process인 render process는 �
 
 Chromium에서 zygote를 어떻게 활용하는지 구체적으로 확인해보자.
 
-![zygote_launch](https://www.dropbox.com/s/ti5bs2fm3ueq3jp/zygote_launch.png?dl=1)
+![zygote_launch](/img/zygote_launch.png)
 
 위의 그림과 같이, Chromium에서는 browser process가 생성된 이후 Zygote process를
 fork와 exec함수를 활용해 load 시킨다. 이 동작 같은 경우 <span class="evidence">pid_t
