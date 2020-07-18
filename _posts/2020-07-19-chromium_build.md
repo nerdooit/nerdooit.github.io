@@ -43,7 +43,7 @@ Chromium 문서에서는 Ubuntu 16.04 를 기반으로 빌드했으며, 다른 �
 Tip) Linux에서 시스템 환경을 검색하는 방법
 
 ```bash
-보통 H/W 정보는 /proc 정보에 다 있다.
+# 보통 H/W 정보는 /proc 정보에 다 있다.
 
 # CPU 정보
 cat /proc/cpuinfo
