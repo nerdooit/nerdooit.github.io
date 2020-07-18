@@ -42,18 +42,18 @@ Chromium 문서에서는 Ubuntu 16.04 를 기반으로 빌드했으며, 다른 �
 
 Tip) Linux에서 시스템 환경을 검색하는 방법
 
-```sh
+```bash
 보통 H/W 정보는 /proc 정보에 다 있다.
 
-// CPU 정보
+# CPU 정보
 cat /proc/cpuinfo
 
-// memory 정보
-cat /proc/meminfo // 보기 어려움, 아래의 명령어를 통해 보자
-free -m (or -g) // free는 memory 용량을 간단히 보여주는데, mega byte표현은 m
-								// giga byte 표현은 g이다.
-// disk 정보
-cat /proc/diskstats // 보기 어려움, 아래의 명령어로 보자
+# memory 정보
+cat /proc/meminfo # 보기 어려움, 아래의 명령어를 통해 보자
+free -m (or -g) # free는 memory 용량을 간단히 보여주는데, mega byte표현은 m
+								# giga byte 표현은 g이다.
+# disk 정보
+cat /proc/diskstats # 보기 어려움, 아래의 명령어로 보자
 df -h
 ```
 
@@ -88,20 +88,20 @@ Recipe들을 모아 Chromium을 빌드할 수 있도록 하는 시스템이 depo
 
 - depot_tools를 본인의 home 디렉토리에 clone하자.
 
-```sh
+```bash
 $ git clone https://chromium.googlesource.com/chromium/tools/depot_tools.git
 ```
 
 - 환경 변수 설정 (shell 입장에서 어느 위치에서나 depot_tools에 접근하기 위한
 		과정)
 
-```sh
+```bash
 $ export PATH="$PATH:${HOME}/depot_tools"
 ```
 
 - code를 fetch하자. (이 때 gclient가 사용된다.)
 
-```sh
+```bash
 # chromium을 빌드하기 위한 디렉토리 생성
 $ mkdir ~/chromium && cd ~/chromium
 
