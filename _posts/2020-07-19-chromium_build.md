@@ -5,7 +5,7 @@ subtitle: 'Ubuntu 환경에서 Chromium을 빌드하는 방법을 알아보자'
 date: 2020-07-19
 author: nerdooit
 cover: '/img/chromium_nerdooit.png'
-tags: chromium chromium_document
+tags: chromium chromium_document oss
 lastmod : '2020-07-19 08:05:00'
 sitemap :
   changefreq : daily
@@ -86,6 +86,22 @@ Recipe들을 모아 Chromium을 빌드할 수 있도록 하는 시스템이 depo
 
 #### 설치 가이드
 
+```bash
+# 설치 명령어 모음
+# 아래에 자세하게 나와있으며, 명령어는 아래를 치면 된다. 자세한 설명은 아래를
+보자.
+
+$ git clone https://chromium.googlesource.com/chromium/tools/depot_tools.git
+$ export PATH="$PATH:${HOME}/depot_tools"
+$ mkdir ~/chromium && cd ~/chromium
+$ fetch --nohooks chromium
+$ cd src
+$ ./build/install-build-deps.sh
+$ gclient runhooks
+$ gn gen out/Default
+$ ninja -C out/Default chrome
+```
+
 - depot_tools를 본인의 home 디렉토리에 clone하자.
 
 ```bash
@@ -100,6 +116,13 @@ $ export PATH="$PATH:${HOME}/depot_tools"
 ```
 
 - code를 fetch하자. (이 때 gclient가 사용된다.)
+	- 만약에 repo history가 필요 없다면 --no-history 옵션을 이용해서 history를
+제거하고 fetch할 수 있다. 이 경우 시간은 절약된다. 하지만, history가 없기 때문에
+이전에 누가 수정했는지 알 수 없다.
+	- 위의 --nohook 옵션 같은 경우 빌드 관련 의존성 파일을 설치하기 위해 잠시 멈추는
+것이다. 만약 build를 처음 했다면 이후 --nohook option이 아닌 gclient runhooks을
+하면된다. runhook은 빌드 관련 의존적인 파일들은 설치 됐다고 가정하고 out 폴더
+생성 및 각종 gn recipe들의 환경을 세팅하도록 한다.
 
 ```bash
 # chromium을 빌드하기 위한 디렉토리 생성
@@ -109,3 +132,52 @@ $ mkdir ~/chromium && cd ~/chromium
 $ fetch --nohooks chromium
 ```
 
+- 빌드 관련 추가적인 세팅을 하자
+	- Chromium은 다양한 플랫폼에서 사용할 수 있다. 다만, 빌드 중 플랫폼 의존적인 부분을
+	맞추기 위해 아래의 명령어를 수행해야한다. (초기 세팅에만 수행하면 된다)
+	- Ubuntu 환경에서는 아래의 명령어를 초기에 무조건 해줘야함.
+
+```bash
+$ ./build/install-build-deps.sh
+```
+
+- 빌드가 세팅되면 이제 관련된 바이너리를 받는 명령어를 수행하자.
+	- 초기에 위의 빌드 관련 세팅이 되어있다면, 이후에는 아래의 명령어만 수행하면
+	된다.
+
+```bash
+# 초기에 install-build-deps.sh 수행했다면, no-hooks 단계와 install-build-deps.sh
+단계를 건너 뛰고 아래의 명령어만 수행하면 된다.
+
+$ gclient runhooks
+```
+
+- Ninja 컴파일 세팅
+	- Chromium에서는 ninja를 사용한다. ninja 관련 gn recipe를 해석할 수 있도록
+	세팅을 해줘야한다. (ninja 관련은 확실하지 않으며 필요한 부분은 찾아보도록
+			하자.)
+	- out/Default 디렉토리에 ninja 컴파일 환경이 세팅된다.
+	- Default 이름은 변경이 가능하며 보통 Release로 많이 사용하는 것 같아보였다.
+
+```bash
+$ gn gen out/Default
+```
+
+- Ninja 컴파일
+	- depot-tools를 설치하면 ninja가 사용가능하며, 아래의 명령어를 통해 ninja
+	를 수행하면 된다. ninja 빌드 시스템에서 compile을 하기위해서는 -C옵션을
+	이용한다. 다양한 옵션이 있으며, help를 통해 manual을 참고하도록 하자.
+
+```bash
+$ ninja -C out/Default chrome
+```
+
+위의 명령어들을 치게 되면 빌드가 된다. 다만, 엄청 오래 걸린다. 특히, 성능이 좋지
+않으면 자기전에 돌리고 자는 것을 추천한다. 개인적으로 mac 환경에서 작업을 많이
+곧 mac 관련 빌드도 포스팅 하도록 하겠다.
+
+추가적으로, 본인은 좀 더 빌드를 빨리 할 수 있는 ccache를 사용하고 있는데, 이
+부분은 정리가 완료되면 ~~[여기]()~~ 포스팅 하도록 하겠다.
+
+#### Reference
+[Google Document](https://chromium.googlesource.com/chromium/src/+/master/docs/linux/build_instructions.md)
