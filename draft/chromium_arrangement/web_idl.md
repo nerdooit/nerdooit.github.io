@@ -51,7 +51,21 @@ Chromium이 어떻게 WebIDL을 이용해 native 코드와 연결하는지 좀 �
 
 ![webIDL](/img/webIDL_overview.png)
 
+그림 기반으로 설명
+web idl을 이용해 어떤 산출물 만들고 어떻게 바인딩 되고 이걸 어떻게 연결하는지
 
+
+### Chromium Binding overview (Source code 부분)
+
+Native 부르는 부분
+document idl
+out/gen 및에 생김
+
+JS에 등록되는 부분
+binding 하기위한 pointer 등록하는 부분
+reference table에 등록
+
+---
 ### Helloworld API 만들기 소스코드 구성 설명
 
 ### Console 출력 (결과 화면)
