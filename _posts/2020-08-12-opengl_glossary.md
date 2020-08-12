@@ -1,3 +1,17 @@
+---
+layout: post
+title: '[OpenGL ES] Graphic 관련 용어정리'
+subtitle: 'OpenGL ES 학습 전 필요한 용어 정리'
+date: 2020-08-12
+author: nerdooit
+cover: '/img/openGLES_cover.png'
+tags: openGL openGLES chromium_media
+lastmod : '2020-08-12 12:15:00'
+sitemap :
+  changefreq : daily
+  priority : 1.0
+---
+
 ### OpenGL ES 란
 OpenGL ES (OpenGL for Embedded Systmes)는 휴대 단말기기와 Embedded Systems (이하
 		ES 장치)에 초점을 둔 향상된 3D 그래픽을 위한 API (Application Promgramming
